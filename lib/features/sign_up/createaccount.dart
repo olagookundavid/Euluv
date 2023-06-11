@@ -1,44 +1,88 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/Utils/custom_button.dart';
+
 import 'package:untitled/core/colors.dart';
 import 'package:untitled/core/image_string.dart';
-import 'package:untitled/features/login/forgotpassword.dart';
+import 'package:untitled/features/login/login_screen.dart';
+import 'package:untitled/features/sign_up/location.dart';
 
-import 'package:untitled/features/sign_up/createaccount.dart';
-
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class CreateAccount extends StatefulWidget {
+  const CreateAccount({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<CreateAccount> createState() => _CreateAccountState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _CreateAccountState extends State<CreateAccount> {
   @override
   Widget build(BuildContext context) {
     final wid = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
                 SizedBox(height: 20),
-                Center(
-                  child: Image.asset(
-                    AppImages.logologin,
-                    fit: BoxFit.fitHeight,
-                  ),
-                ),
-                const SizedBox(height: 20),
-                const Text('Welcome Back',
+                const Text('Create Your Account',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold)),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 const Text('Fill in the details to continue to your account',
                     style: TextStyle(color: EuluvColors.normaltextcolor)),
+                const SizedBox(height: 30),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("First Name",
+                        style: TextStyle(color: EuluvColors.normaltextcolor)),
+                    const SizedBox(height: 15),
+                    TextFormField(
+                        decoration: const InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          width: 0.2,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          width: 0.2,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    )),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("Last Name",
+                        style: TextStyle(color: EuluvColors.normaltextcolor)),
+                    const SizedBox(height: 15),
+                    TextFormField(
+                        decoration: const InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          width: 0.2,
+                        ),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          width: 0.2,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    )),
+                  ],
+                ),
                 const SizedBox(height: 30),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -68,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Password",
+                    const Text("Phone Number",
                         style: TextStyle(color: EuluvColors.normaltextcolor)),
                     const SizedBox(height: 15),
                     TextFormField(
@@ -90,37 +134,31 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
                 const SizedBox(height: 30),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                        height: 50,
-                        width: wid / 1.35,
-                        decoration: BoxDecoration(
-                          color: EuluvColors.purple,
-                          borderRadius: BorderRadius.circular(10),
+                    const Text("Referral Code (Optional)",
+                        style: TextStyle(color: EuluvColors.normaltextcolor)),
+                    const SizedBox(height: 15),
+                    TextFormField(
+                        decoration: const InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          width: 0.2,
                         ),
-                        child: const Center(
-                            child: Text(
-                          'Login',
-                          style: TextStyle(color: Colors.white),
-                        ))),
-                    Container(
-                        height: 50,
-                        width: 50,
-                        decoration: BoxDecoration(
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        borderSide: BorderSide(
+                          width: 0.2,
                           color: Colors.grey,
-                          borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Icon(
-                          Icons.barcode_reader,
-                          color: Colors.white,
-                        )),
+                      ),
+                    )),
                   ],
                 ),
-                const SizedBox(height: 20),
-                const Text('-- or --', style: TextStyle(color: Colors.black)),
-                const SizedBox(height: 20),
+                const SizedBox(height: 30),
                 Container(
                     height: 60,
                     width: wid,
@@ -165,24 +203,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         ],
                       ),
                     )),
-                const SizedBox(height: 20),
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ForgotPassword()));
-                  },
-                  child: const Text('Forgot Password?',
-                      style: TextStyle(
-                          color: EuluvColors.deapteal,
-                          fontWeight: FontWeight.bold)),
-                ),
+                const SizedBox(height: 30),
+                CustomButtonEuluv(
+                    wid: wid,
+                    onpressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LocationScreen()));
+                    },
+                    buttonTitle: 'Continue'),
                 const SizedBox(height: 30),
                 Row(
                   children: [
-                    SizedBox(width: 40),
-                    const Text('Don\'t have an account?',
+                    const SizedBox(width: 40),
+                    const Text('Already have an account?',
                         style: TextStyle(
                             color: EuluvColors.purple,
                             fontWeight: FontWeight.bold)),
@@ -192,9 +227,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const CreateAccount()));
+                                builder: (context) => const LoginScreen()));
                       },
-                      child: Text('Create Account?',
+                      child: const Text('Sign in?',
                           style: TextStyle(
                               color: EuluvColors.deapteal,
                               fontWeight: FontWeight.bold)),
